@@ -12,7 +12,7 @@ pub struct Args {
 #[derive(Subcommand)]
 pub enum Commands {
     Start,
-    Stop,
+    Shutdown,
     Supervisor
 }
 
@@ -23,8 +23,8 @@ pub fn get_function() -> impl FnOnce() {
         Commands::Start => {move || {
             cli::start_server();
         }},
-        Commands::Stop => {move || {
-
+        Commands::Shutdown => {move || {
+            cli::shutdown();
         }},
         Commands::Supervisor => {move || {
             let supervisor = Supervisor::new("127.0.0.1:12345");
